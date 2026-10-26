@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Tarea_en_clase1.MainPage"
+             BackgroundColor="White"
+             Title="Portal de Admisiones">
+
+    <ContentPage.Resources>
+        <Color x:Key="Azul">#1F4E8C</Color>
+
+        <Style TargetType="Label" x:Key="Etiqueta">
+            <Setter Property="TextColor" Value="{StaticResource Azul}" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="VerticalOptions" Value="Center" />
+        </Style>
+
+        <Style TargetType="Picker">
+            <Setter Property="TextColor" Value="Black" />
+            <Setter Property="TitleColor" Value="Gray" />
+            <Setter Property="FontSize" Value="13" />
+        </Style>
+
+        <Style TargetType="Entry">
+            <Setter Property="TextColor" Value="Black" />
+            <Setter Property="PlaceholderColor" Value="Gray" />
+            <Setter Property="FontSize" Value="13" />
+        </Style>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="14">
+
+            <!-- Encabezado -->
+            <Label Text="FASE A - GRADO"
+                   FontSize="22"
+                   FontAttributes="Bold"
+                   TextColor="{StaticResource Azul}"
+                   HorizontalOptions="Center"
+                   SemanticProperties.HeadingLevel="Level1" />
+            <Label Text="Formulario de registro. Complete la siguiente información para realizar su inscripción."
+                   FontSize="12"
+                   TextColor="Black"
+                   HorizontalTextAlignment="Center" />
+
+            <!-- Datos personales -->
+            <Border Stroke="LightGray" StrokeThickness="1" Padding="12">
+                <VerticalStackLayout Spacing="8">
+                    <Label Text="Datos Personales" TextColor="Gray" FontSize="12" />
+
+                    <Label Text="Identificación:" Style="{StaticResource Etiqueta}" />
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
+                        <Picker x:Name="pickerIdentificacion"
+                                Grid.Column="0"
+                                Title="Seleccione una opción"
+                                SelectedIndexChanged="OnIdentificacionChanged">
+                            <Picker.Items>
+                                <x:String>Cédula</x:String>
+                                <x:String>Pasaporte</x:String>
+                                <x:String>RUC</x:String>
+                            </Picker.Items>
+                        </Picker>
+                        <Entry x:Name="entryNumero" Grid.Column="1" Placeholder="Número" />
+                    </Grid>
+
+                    <Label Text="Apellidos:" Style="{StaticResource Etiqueta}" />
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="8">
+                        <Entry x:Name="entryPaterno" Grid.Column="0" Placeholder="Paterno" />
+                        <Entry x:Name="entryMaterno" Grid.Column="1" Placeholder="Materno" />
+                    </Grid>
+
+                    <Label Text="Nombres completos:" Style="{StaticResource Etiqueta}" />
+                    <Entry x:Name="entryNombres" />
+
+                    <Label Text="Teléfono personal:" Style="{StaticResource Etiqueta}" />
+                    <Entry x:Name="entryTelefono" Keyboard="Telephone" MaxLength="10" />
+
+                    <Label Text="Correo personal:" Style="{StaticResource Etiqueta}" />
+                    <Entry x:Name="entryCorreo" Keyboard="Email" />
+
+                    <Label Text="Confirmar correo:" Style="{StaticResource Etiqueta}" />
+                    <Entry x:Name="entryConfirmarCorreo" Keyboard="Email" />
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Carrera, modalidad y campus -->
+            <VerticalStackLayout Spacing="8">
+                <Label Text="Carrera:" Style="{StaticResource Etiqueta}" />
+                <Picker x:Name="pickerCarrera" Title="Seleccione...">
+                    <Picker.Items>
+                        <x:String>Desarrollo de Software</x:String>
+                        <x:String>Electrónica</x:String>
+                        <x:String>Administración</x:String>
+                        <x:String>Contabilidad</x:String>
+                    </Picker.Items>
+                </Picker>
+
+                <Label Text="Modalidad:" Style="{StaticResource Etiqueta}" />
+                <Picker x:Name="pickerModalidad" Title="Seleccione...">
+                    <Picker.Items>
+                        <x:String>Presencial</x:String>
+                        <x:String>Semipresencial</x:String>
+                        <x:String>En línea</x:String>
+                    </Picker.Items>
+                </Picker>
+
+                <Label Text="Campus:" Style="{StaticResource Etiqueta}" />
+                <Picker x:Name="pickerCampus" Title="Seleccione...">
+                    <Picker.Items>
+                        <x:String>Cuenca</x:String>
+                        <x:String>Quito</x:String>
+                        <x:String>Guayaquil</x:String>
+                    </Picker.Items>
+                </Picker>
+            </VerticalStackLayout>
+
+            <Button x:Name="EnviarBtn"
+                    Text="Enviar inscripción"
+                    BackgroundColor="{StaticResource Azul}"
+                    TextColor="White"
+                    CornerRadius="4"
+                    SemanticProperties.Hint="Envía el formulario de inscripción"
+                    Clicked="OnEnviarClicked"
+                    HorizontalOptions="Fill" />
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
